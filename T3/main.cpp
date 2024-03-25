@@ -10,7 +10,7 @@
 #include "GameTask.h"
 #include "GTUpdateState.h"
 #include "GTRender.h"
-#include "TestHeader.h"
+#include "TestHeader.hpp"
 
 
 int main()

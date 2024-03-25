@@ -1,5 +1,5 @@
 
-#include "TestHeader.h"
+#include "TestHeader.hpp"
 
 void TestHeader::TestFunction()
 {
