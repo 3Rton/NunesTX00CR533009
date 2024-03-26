@@ -7,7 +7,6 @@ class GameTask
     GameTask() {};
     ~GameTask() {};
 
-    protected:
     virtual void perform() = 0;
 
 };
