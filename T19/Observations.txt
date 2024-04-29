@@ -1,0 +1,12 @@
+Analyzed: shakkiprojekti
+
+Visual Studio 2022 build
+Error list:
+Warning	C26495	Variable 'Kayttoliittyma::_asema' is uninitialized. Always initialize a member variable (type.6)
+Warning	C6031	Return value ignored: '_setmode'
+Warning	C26495	Variable 'Nappula::_koodi' is uninitialized. Always initialize a member variable (type.6)
+Warning	C26495	Variable 'Nappula::_vari' is uninitialized. Always initialize a member variable (type.6)
+Warning	C4101	'o': unreferenced local variable
+
+nothing seems too serious.
+
