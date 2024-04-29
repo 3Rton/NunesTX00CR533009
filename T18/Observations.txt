@@ -1,0 +1,29 @@
+#include <string.h>
+class X
+{
+ int *p;
+public:
+ X() { p = new int[20]; }
+ void init() { memset( p, 20, 'a' ); }
+ ~X(){ delete p; }
+};
+
+The core seems to be int pointer 
+Constructor reserves 20*sizeof(int) storage 
+memset takes the pointer to some memory area a, fills it with b, and uses c to decide the 'width' of each fill.
+Seems to be about working with raw strings:
+-using int *p instead of char[] array seems odd?
+-the memset() should probably be p-the pointer, 'a'-as the filled character, 20-as the number of a's
+	Right now 20 might be auto-converted to '20'(?), and 'a' might be converted to its decimal int form 97, 
+	so we would attempt filling sizeof(int)*20 memory block with 97 '20's?
+-delete probably is enough to release the memory after memset() syntax is fixed.
+
+PClint results:
+Most notable repeated line seem to be:
+-Lack of Copy constructor
+-Lack of Copy Assignment
+-Ignoring return value (void*) of memset()
+-Implicit conversion of 'signed char' to 'size_t' (As mentioned the order of memset() inputs)
+-using int and string.h
+
+(Only overlapping one seems to be the memset(); big miss on my part not thinking of the copy overloads)
