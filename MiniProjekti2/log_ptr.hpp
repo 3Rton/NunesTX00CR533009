@@ -14,6 +14,9 @@ public:
     Log_ptr(const Log_ptr&) = delete;
 
     void operator=(const Log_ptr& ptr) = delete;
+    
+    T* operator->();
+    T& operator*();
 
     std::string GetName();
 

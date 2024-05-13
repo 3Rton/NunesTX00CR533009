@@ -7,6 +7,20 @@ Log_ptr<T>::Log_ptr( T* inPtr ) : objPtr(inPtr)
 }
 
 template <class T>
+T* Log_ptr<T>::operator->()
+{
+    std::cout << "At " << std::chrono::system_clock::now() << ", " << GetName() << " -> " << objPtr << std::endl;
+    return objPtr;
+}
+
+template <class T>
+T& Log_ptr<T>::operator*()
+{
+    std::cout << "At " << std::chrono::system_clock::now() << ", " << GetName() << " * " << objPtr << std::endl;
+    return *objPtr;
+}
+
+template <class T>
 std::string Log_ptr<T>::GetName()
 {
     return objPtr->name;

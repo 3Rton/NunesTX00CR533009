@@ -21,9 +21,8 @@ int main()
     Log_ptr<Robject> ptrDef(objdef);
     Log_ptr<Robject> ptrBob(obj);
 
-    //deleted functions
-    //Log_ptr<Robject> ptrCtor(ptrBob);
-    //ptrBob = ptrDef;
-
-    std::cout << "But now the fun is over." << std::endl;
+    std::cout << "Test arrow operator for getting name " << ptrBob->name << std::endl;
+    std::cout << "Test dereference operator for creating Robject " << std::endl;
+    Robject* newRobject = &(*ptrBob);
+    std::cout << newRobject;
 }
