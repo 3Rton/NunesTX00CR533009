@@ -7,19 +7,25 @@ template <class T>
 class Log_ptr
 {
 private:
-    T* objPtr = nullptr;
+    T* ObjectPtr = nullptr;
+    int* RefCount = nullptr;
 
 public:
-    Log_ptr(T* inPtr);
-    Log_ptr(const Log_ptr&) = delete;
+    Log_ptr();
+    Log_ptr(T* InputPtr);
+    Log_ptr(const Log_ptr& InputLogPtr);
 
-    void operator=(const Log_ptr& ptr) = delete;
-    
+    T& operator=(const Log_ptr& InputLogPtr);
     T* operator->();
     T& operator*();
+
+    T* GetObjectPtr();
 
     std::string GetName();
 
     ~Log_ptr();
+
+private:
+    void __CleanUp__();
 };
 

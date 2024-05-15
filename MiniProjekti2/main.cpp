@@ -18,11 +18,6 @@ int main()
     Robject* objdef = new Robject();
     Robject* obj = new Robject("Bob");
 
-    Log_ptr<Robject> ptrDef(objdef);
-    Log_ptr<Robject> ptrBob(obj);
-
-    std::cout << "Test arrow operator for getting name " << ptrBob->name << std::endl;
-    std::cout << "Test dereference operator for creating Robject " << std::endl;
-    Robject* newRobject = &(*ptrBob);
-    std::cout << newRobject;
+    Log_ptr<Robject> logptr(obj);
+    Log_ptr<Robject> copyptr(logptr);
 }
