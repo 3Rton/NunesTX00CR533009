@@ -11,6 +11,7 @@
 int STHC = std::thread::hardware_concurrency();
 int AvailableThreads = (STHC != 0) ? (AvailableThreads = STHC) : (AvailableThreads = 1);
 
+std::mutex gmutex;
 #define ASYNC 1
 
 int main()

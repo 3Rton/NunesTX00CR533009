@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <chrono>
+#include <mutex>
+
+extern std::mutex gmutex;
 
 template <class T>
 class Log_ptr

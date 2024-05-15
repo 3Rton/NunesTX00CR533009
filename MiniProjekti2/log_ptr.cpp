@@ -19,7 +19,8 @@ Log_ptr<T>::Log_ptr( const Log_ptr& InputLogPtr )
     this->RefCount = InputLogPtr.RefCount;
 
     if (InputLogPtr.ObjectPtr != nullptr)
-    { 
+    {
+        std::lock_guard<std::mutex> lock(gmutex); 
         (*this->RefCount)++;
     }
     
@@ -73,6 +74,7 @@ T* Log_ptr<T>::GetObjectPtr()
 template <class T>
 void Log_ptr<T>::__CleanUp__()
 {
+    std::lock_guard<std::mutex> lock(gmutex);
     (*RefCount)--;
     if (*RefCount == 0)
     {
