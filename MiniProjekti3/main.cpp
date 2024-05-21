@@ -9,8 +9,9 @@
 
   - kuinka paljon enemmän muistia optimoitu versio kuluttaa?
   - kuinka paljon nopeammin optimoitu versio toimii?
-  Muisti:
-  Nopeus RAW, STD, -O0: 5.4s vs 20.0s vs 20.5s
+  Muisti: hakutaulu about 40 byteä (stack)
+  Nopeus Straights RAW, STD, -O0: 5.4s vs 20.0s vs 20.5s
+  Nopeus &&QuadsFH RAW, STD, -O0: XX vs XX vs 42.9s
 
   Vaikuttaa siltä et toi std::unordered_map hashäys kun ettii bitsetillä vie kaiken ajan. 
   En tiiä pystyiskö sen jotenki tekemään niin et se ei aina tekis häshiä siitä bitsetistä mikä tehään siitä kädestä
@@ -49,6 +50,8 @@ std::bitset<13> BitwiseHand{0};
 #if defined(OptimizedRaw)
 
 const int STRAIGHT_COUNT = 10;
+const int FOUR_COUNT = 156;
+const int FULLHOUSE_Count = 156;
 const int BIT_MASKS[STRAIGHT_COUNT] = {
     0b0000000011111, // A-2-3-4-5 (treated as 1-2-3-4-5)
     0b0000000111110, // 2-3-4-5-6
@@ -61,7 +64,6 @@ const int BIT_MASKS[STRAIGHT_COUNT] = {
     0b1111100000000, // 9-10-J-Q-K
     0b1000000001111  // 10-J-Q-K-A
 };
-
 
 #endif
 
