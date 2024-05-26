@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5.0)
+cmake_minimum_required(VERSION 3.29.0)
 project(Loppuprojekti VERSION 0.1.0 LANGUAGES C CXX)
 
 include(CTest)
@@ -33,9 +33,26 @@ if (NOT raylib_cpp_FOUND)
 	FetchContent_MakeAvailable(raylib_cpp)
 endif()
 
+#Jolt Physics engine (Used in Horizon West)
+find_package(JoltPhysics QUIET)
+if (NOT JoltPhysics_FOUND)
+	include(FetchContent)
+	FetchContent_Declare(
+		JoltPhysics
+		GIT_REPOSITORY "https://github.com/jrouwe/JoltPhysics"
+		GIT_TAG "v5.0.0"
+	)
+	FetchContent_MakeAvailable(JoltPhysics)
+endif()
+
 
 #Turn off raylib examples compilation
 set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+
+#Jolt Physics Sets
+set(DOUBLE_PRECISION ON)
+set(GENERATE_DEBUG_SYMBOLS ON)
+set(OBJECT_LAYER_BITS 16)
 
 #Create main.cpp
 add_executable(Loppuprojekti main.cpp)
@@ -49,12 +66,17 @@ include(CPack)
 set_target_properties(Loppuprojekti PROPERTIES CXX_STANDARD 20)
 
 
-#Link Raylib
+#Included Libs
 target_link_libraries(
     Loppuprojekti
 	raylib
 	raylib_cpp
+	Jolt
 )
-#Link include directories
-target_include_directories(Loppuprojekti PUBLIC "${raylib_SOURCE_DIR}/src")
+
+#Lib paths
+target_include_directories(Loppuprojekti PUBLIC 
+	"${raylib_SOURCE_DIR}/src"
+	"${JoltPhysics_SOURCE_DIR}/.."
+)
 
