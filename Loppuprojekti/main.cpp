@@ -15,13 +15,17 @@
 #include <Jolt/Physics/Body/BodyCreationSettings.h>
 #include <Jolt/Physics/Body/BodyActivationListener.h>
 
+/** \file */ 
+
 int main(int, char**){
     std::cout << "Hello, from Loppuprojekti!\n";
+
+    raylib::AudioDevice ad;
+
+    ad.IsReady();
 
     JPH::RegisterDefaultAllocator();
 
     JPH::Factory::sInstance = new JPH::Factory();
-
-    std::cout << "JPH worksish?";
 
 }
