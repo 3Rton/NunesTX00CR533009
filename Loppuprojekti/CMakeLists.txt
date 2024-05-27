@@ -63,7 +63,6 @@ include(CPack)
 #raylib_cpp compiler version
 set_target_properties(Loppuprojekti PROPERTIES CXX_STANDARD 20)
 
-
 #Included Libs
 target_link_libraries(
     Loppuprojekti
