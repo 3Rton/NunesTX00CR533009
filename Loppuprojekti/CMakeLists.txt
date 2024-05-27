@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.29.0)
 project(Loppuprojekti VERSION 0.1.0 LANGUAGES C CXX)
 
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded")
+
 include(CTest)
 enable_testing()
 
@@ -41,6 +43,7 @@ if (NOT JoltPhysics_FOUND)
 		JoltPhysics
 		GIT_REPOSITORY "https://github.com/jrouwe/JoltPhysics"
 		GIT_TAG "v5.0.0"
+		SOURCE_SUBDIR "Build"
 	)
 	FetchContent_MakeAvailable(JoltPhysics)
 endif()
@@ -48,11 +51,6 @@ endif()
 
 #Turn off raylib examples compilation
 set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-
-#Jolt Physics Sets
-set(DOUBLE_PRECISION ON)
-set(GENERATE_DEBUG_SYMBOLS ON)
-set(OBJECT_LAYER_BITS 16)
 
 #Create main.cpp
 add_executable(Loppuprojekti main.cpp)
@@ -77,6 +75,6 @@ target_link_libraries(
 #Lib paths
 target_include_directories(Loppuprojekti PUBLIC 
 	"${raylib_SOURCE_DIR}/src"
-	"${JoltPhysics_SOURCE_DIR}/.."
+	"${JoltPhysics_SOURCE_DIR}/Jolt"
 )
 
